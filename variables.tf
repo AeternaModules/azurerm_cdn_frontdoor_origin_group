@@ -21,18 +21,18 @@ EOT
   type = map(object({
     cdn_frontdoor_profile_id                                  = string
     name                                                      = string
-    restore_traffic_time_to_healed_or_new_endpoint_in_minutes = optional(number, 10)
-    session_affinity_enabled                                  = optional(bool, true)
+    restore_traffic_time_to_healed_or_new_endpoint_in_minutes = optional(number) # Default: 10
+    session_affinity_enabled                                  = optional(bool)   # Default: true
     load_balancing = object({
-      additional_latency_in_milliseconds = optional(number, 50)
-      sample_size                        = optional(number, 4)
-      successful_samples_required        = optional(number, 3)
+      additional_latency_in_milliseconds = optional(number) # Default: 50
+      sample_size                        = optional(number) # Default: 4
+      successful_samples_required        = optional(number) # Default: 3
     })
     health_probe = optional(object({
       interval_in_seconds = number
-      path                = optional(string, "/")
+      path                = optional(string) # Default: "/"
       protocol            = string
-      request_type        = optional(string, "HEAD")
+      request_type        = optional(string) # Default: "HEAD"
     }))
   }))
 }
