@@ -8,11 +8,11 @@ output "cdn_frontdoor_origin_groups_cdn_frontdoor_profile_id" {
 }
 output "cdn_frontdoor_origin_groups_health_probe" {
   description = "Map of health_probe values across all cdn_frontdoor_origin_groups, keyed the same as var.cdn_frontdoor_origin_groups"
-  value       = { for k, v in azurerm_cdn_frontdoor_origin_group.cdn_frontdoor_origin_groups : k => v.health_probe if v.health_probe != null && length(v.health_probe) > 0 }
+  value       = { for k, v in azurerm_cdn_frontdoor_origin_group.cdn_frontdoor_origin_groups : k => one(v.health_probe) if v.health_probe != null && length(v.health_probe) > 0 }
 }
 output "cdn_frontdoor_origin_groups_load_balancing" {
   description = "Map of load_balancing values across all cdn_frontdoor_origin_groups, keyed the same as var.cdn_frontdoor_origin_groups"
-  value       = { for k, v in azurerm_cdn_frontdoor_origin_group.cdn_frontdoor_origin_groups : k => v.load_balancing if v.load_balancing != null && length(v.load_balancing) > 0 }
+  value       = { for k, v in azurerm_cdn_frontdoor_origin_group.cdn_frontdoor_origin_groups : k => one(v.load_balancing) if v.load_balancing != null && length(v.load_balancing) > 0 }
 }
 output "cdn_frontdoor_origin_groups_name" {
   description = "Map of name values across all cdn_frontdoor_origin_groups, keyed the same as var.cdn_frontdoor_origin_groups"
